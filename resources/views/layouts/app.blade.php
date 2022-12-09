@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="{{ csrf_token() }}" name="csrf-token">
 
-    <title> @yield('title') | {{config('app.name')}}</title>
+    <title> {{ $title }} | {{ config('app.name') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
 
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <script src="{{ mix('js/app.js') }}" defer></script>
     @livewireStyles
 </head>
@@ -24,7 +24,7 @@
 
         <!-- Page Heading -->
         <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
         </header>
@@ -33,6 +33,8 @@
         <main>
             {{ $slot }}
         </main>
+
+        @stack('modals')
 
         @livewireScripts
     </div>

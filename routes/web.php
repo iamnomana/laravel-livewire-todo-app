@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Todo\Show;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->middleware('guest');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('todos', Show::class)->name('todos');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -42,11 +42,11 @@ class Show extends Component
     {
         $this->validate([
             'todo' => 'required',
-            'body' => 'required',
         ]);
 
         Todo::updateOrCreate(['id' => $this->todo_id], [
-            'todo' => $this->todo
+            'todo' => $this->todo,
+            'user_id' => auth()->user()->id,
         ]);
 
         session()->flash(
